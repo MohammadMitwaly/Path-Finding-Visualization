@@ -9,6 +9,8 @@ let startPoint, endPoint;
 
 let pointWidth, pointHeight;
 
+let resetButton;
+
 class Point {
   constructor(f, g, h, i, j) {
     this.xIndex = i;
@@ -69,17 +71,11 @@ class Point {
 }
 
 function setup() {
+  resetButton = createButton("Generate new path");
+  resetButton.mousePressed(generateNewPath);
   // put setup code here
-  createCanvas(400, 400);
-  pointWidth = width / columns;
-  pointHeight = height / rows;
-
-  grid = initArray(grid, rows, columns);
-  startPoint = grid[0][0];
-  endPoint = grid[rows - 1][columns - 1];
-
-  openSet.push(startPoint);
-  console.log(grid);
+  createCanvas(600, 600);
+  generateNewPath();
 }
 
 function draw() {
@@ -161,6 +157,21 @@ function draw() {
     );
   });
   endShape();
+}
+
+function generateNewPath() {
+  pointWidth = width / columns;
+  pointHeight = height / rows;
+  grid = createArray(columns, rows);
+  grid = initArray(grid, rows, columns);
+  startPoint = grid[0][0];
+  endPoint = grid[rows - 1][columns - 1];
+  openSet = [];
+  openSet.push(startPoint);
+  closedSet = [];
+  path = [];
+
+  loop();
 }
 
 function createArray(length) {
