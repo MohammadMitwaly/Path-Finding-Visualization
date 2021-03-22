@@ -74,7 +74,7 @@ function setup() {
   resetButton = createButton("Generate new path");
   resetButton.mousePressed(generateNewPath);
   // put setup code here
-  createCanvas(600, 600);
+  createCanvas(800, 800);
   generateNewPath();
 }
 
